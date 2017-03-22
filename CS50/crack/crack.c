@@ -16,18 +16,19 @@ int main (int argc, string argv[]) {
     hash = argv[1];
     salt[0] = hash[0];
     salt[1] = hash[1];
-    printf("salt is %s!\n", salt);
+    //printf("salt is %s!\n", salt);
 
-    // Check to see if hash is already decrypted. 
-    if ( hash != password) {
-      
-      // Crack password.
-      
+    // Pass characters through crypt to generate hash until both values match.  
+    do {
+    password = crypt("rofl", salt);
+    printf("The password is %s\n", password);
     }
+    while ( hash != password );
+
+  }
   else {
     printf("Usage: ./crack hash\n");
     return 1;
   }
   return 0;
-  }
 }
